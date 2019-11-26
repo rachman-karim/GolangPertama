@@ -5,6 +5,20 @@ import (
 	"fmt"
 )
 
+type Human struct {
+	name string
+	age  int
+}
+
+type Student struct {
+	Human
+	class string
+}
+type person struct {
+	name string
+	age  int
+}
+
 func main() {
 	fmt.Println("Rachman")
 	fmt.Println(len("It's works!"))
@@ -20,18 +34,17 @@ func main() {
 		fmt.Println("raka oke")
 	}
 
-	type person struct {
-		name string
-		age  int
-	}
+	var P person
 
-	//var P person
+	P.name = "Andi"
+	P.age = 34
+	//P := struct {		name string		age  int	}{"Andi", 34}
+	fmt.Println("Nama saya adalah ", P.name)
 
-	//P.name = "Andi"
-	//P.age = 34
-	P := struct {
-		name string
-		age  int
-	}{"Andi", 34}
-	fmt.Println("Nama saya adalah ", P)
+	student1 := Student{Human{"Andi", 34}, "Intro to Programming"}
+
+	fmt.Println("Nama saya adalah ", student1.name)
+	fmt.Println("Umur saya adalah ", student1.age)
+	fmt.Println("Saya ikut kelas ", student1.class)
+
 }
