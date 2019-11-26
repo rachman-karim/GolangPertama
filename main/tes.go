@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"math/rand"
 )
 
 type Skills []string
@@ -28,6 +29,15 @@ type Murid struct {
 type person struct {
 	name string
 	age  int
+}
+
+func testFunc() {
+	number := 0
+
+testLabel:
+	fmt.Println(number)
+	number++
+	goto testLabel
 }
 
 func main() {
@@ -70,5 +80,54 @@ func main() {
 
 	fmt.Println("No telfon rumah saya adalah ", student2.Human.phone)
 	fmt.Println("No telfon pribadi saya adalah ", student2.phone)
+
+	// inisialisasi variabel
+	//number := rand.Intn(20);
+	number := rand.Intn(20)
+	//if number := rand.Intn(20); number < 10 {
+	if number < 10 {
+		fmt.Println("Nomor", number, "lebih kecil dari 10")
+	} else if number == 10 {
+		fmt.Println("Nomor", number, "sama dengan 10")
+	} else {
+		fmt.Println("Nomor", number, "lebih besar dari 10")
+	}
+
+	//testFunc()
+
+	sum := 0
+	for index := 0; index < 10; index++ {
+		sum += index
+	}
+	/*
+		sum2 := 0
+		for sum2 < 10 {
+			sum2 += sum2
+		}
+	*/
+	fmt.Println(sum)
+
+	//switch case fallthrough = untuk tidak keluar setelah konsidi terpenuhi
+
+	index := 10
+	switch index {
+	case 1:
+		fmt.Println("index <= 1")
+		fallthrough
+	case 2, 3, 4:
+		fmt.Println("index <= 2 atau 3 atau 4")
+		fallthrough
+	case 10:
+		fmt.Println("index <= 10")
+		fallthrough
+	default:
+		fmt.Println("index adalah bilangan integer")
+	}
+
+	//Array
+	arrayTest := [4]int{74, 13, 22, 49}
+	for index, value := range arrayTest {
+		fmt.Printf("Index %d = %d\n", index, value)
+	}
 
 }
