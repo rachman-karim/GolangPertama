@@ -7,8 +7,9 @@ import (
 
 type Skills []string
 type Human struct {
-	name string
-	age  int
+	name  string
+	age   int
+	phone string
 }
 
 type Student struct {
@@ -17,6 +18,13 @@ type Student struct {
 	int
 	class string
 }
+
+type Murid struct {
+	Human
+	class string
+	phone string
+}
+
 type person struct {
 	name string
 	age  int
@@ -44,7 +52,7 @@ func main() {
 	//P := struct {		name string		age  int	}{"Andi", 34}
 	fmt.Println("Nama saya adalah ", P.name)
 
-	student1 := Student{Human: Human{"Andi", 34}, class: "Intro to Programming"}
+	student1 := Student{Human: Human{"Andi", 34, ""}, class: "Intro to Programming"}
 
 	fmt.Println("Nama saya adalah ", student1.name)
 	fmt.Println("Umur saya adalah ", student1.age)
@@ -57,5 +65,10 @@ func main() {
 
 	student1.int = 2
 	fmt.Printf("Saya sudah menjadi programmer selama %d tahun\n", student1.int)
+
+	student2 := Murid{Human{"Andi", 34, "+6221-777-444"}, "Intro to Programming", "+6222-987-654"}
+
+	fmt.Println("No telfon rumah saya adalah ", student2.Human.phone)
+	fmt.Println("No telfon pribadi saya adalah ", student2.phone)
 
 }
