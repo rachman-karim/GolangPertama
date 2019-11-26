@@ -19,4 +19,15 @@ func main() {
 	} else {
 		fmt.Println("raka oke")
 	}
+
+	type person struct {
+		name string
+		age  int
+	}
+
+	var P person
+
+	P.name = "Andi"
+	P.age = 34
+	fmt.Println("Nama saya adalah ", P.age)
 }
