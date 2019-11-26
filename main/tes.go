@@ -40,6 +40,18 @@ testLabel:
 	goto testLabel
 }
 
+// return greater value between parameters
+func max(param1, param2 int) int {
+	if param1 > param2 {
+		return param1
+	}
+	return param2
+}
+
+func sumAndTime(param1, param2 int) (int, int) {
+	return param1 + param2, param1 * param2
+}
+
 func main() {
 	fmt.Println("Rachman")
 	fmt.Println(len("It's works!"))
@@ -125,9 +137,82 @@ func main() {
 	}
 
 	//Array
-	arrayTest := [4]int{74, 13, 22, 49}
+	arrayTest := []int{74, 13, 22, 49}
 	for index, value := range arrayTest {
 		fmt.Printf("Index %d = %d\n", index, value)
 	}
 
+	slice := make([]int, 0, 10)
+	slice = append(slice, 8)
+	fmt.Println(slice) // [8]
+
+	slice2 := make([]int, 10)
+	slice2 = append(slice2, 8)
+	//slice2 = slice2[0:8]
+	//slice2[7] = 8
+	fmt.Println(slice2)
+
+	scores := []int{1, 2, 3, 4, 5}
+	slice4 := scores[2:4]
+	slice4[0] = 999
+
+	fmt.Println("slice: ", slice4)
+	fmt.Println("scores: ", scores)
+
+	scores2 := []int{1, 2, 3, 4, 5}
+	newScores := make([]int, 5)
+
+	copy(newScores, scores2)
+	newScores[0] = 999
+	scores2[1] = 1000
+
+	fmt.Println("copy: ", newScores)
+	fmt.Println("scores: ", scores2)
+
+	//MAP
+	var numbers2 map[string]int
+	// atau
+	numbers2 = make(map[string]int)
+	numbers2["one"] = 1 // assign value by key
+	numbers2["ten"] = 10
+	numbers2["six"] = 6
+
+	fmt.Println(numbers2["ten"]) // get value
+
+	// initialize map with key and value
+	rating := map[string]float32{"C": 5, "Go": 4.5, "Python": 4.5, "C++": 2}
+
+	// map memiliki 2 return value, jika key tersedia pada map maka 'exist' akan true tetapi bila tidak ada maka akan false
+	cSharpRating, exist := rating["C#"]
+	if exist {
+		fmt.Println("C# tersedia pada map dan memiliki value ", cSharpRating)
+	} else {
+		fmt.Println("C# tidak tersedia pada map")
+	}
+
+	// delete elemen
+	delete(rating, "C")
+
+	no1 := 7
+	no2 := 2
+
+	fmt.Printf("max(%d, %d) = %d\n", no1, no2, max(no1, no2))
+	fmt.Printf("max(%d, %d) = %d\n", no2, no1, max(no2, no1))
+
+	no11 := 7
+	no21 := 2
+
+	no1PLUSno2, no1TIMESno2 := sumAndTime(no11, no21)
+
+	fmt.Printf("%d + %d = %d\n", no11, no21, no1PLUSno2)
+	fmt.Printf("%d * %d = %d\n", no21, no11, no1TIMESno2)
+
+	variadicFunc(4, 11, 23, 7, 33, 10, 5)
+
+}
+
+func variadicFunc(args ...int) {
+	for key, val := range args {
+		fmt.Printf("Parameter index ke %d = %d\n", key, val)
+	}
 }
