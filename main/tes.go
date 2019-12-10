@@ -52,6 +52,9 @@ func sumAndTime(param1, param2 int) (int, int) {
 	return param1 + param2, param1 * param2
 }
 
+type testInt func(int) bool // define a function type of variable
+var data = []int{1, 2, 3, 4, 5, 6, 7}
+
 func main() {
 	fmt.Println("Rachman")
 	fmt.Println(len("It's works!"))
@@ -192,22 +195,49 @@ func main() {
 
 	// delete elemen
 	delete(rating, "C")
-
+	//-------------------------------------------------------
 	no1 := 7
 	no2 := 2
 
 	fmt.Printf("max(%d, %d) = %d\n", no1, no2, max(no1, no2))
 	fmt.Printf("max(%d, %d) = %d\n", no2, no1, max(no2, no1))
 
+	//-------------------------------------------------------
 	no11 := 7
 	no21 := 2
 
 	no1PLUSno2, no1TIMESno2 := sumAndTime(no11, no21)
 
-	fmt.Printf("%d + %d = %d\n", no11, no21, no1PLUSno2)
-	fmt.Printf("%d * %d = %d\n", no21, no11, no1TIMESno2)
+	fmt.Printf("%d + %d = %d\n", no1, no2, no1PLUSno2)
+	fmt.Printf("%d * %d = %d\n", no2, no1, no1TIMESno2)
 
+	//-------------------------------------------------------
 	variadicFunc(4, 11, 23, 7, 33, 10, 5)
+
+	//-------------------------------------------------------
+	fmt.Printf("maxx(%d, %d) = %d\n", no1, no2, maxx(no1, no2))
+	fmt.Printf("maxx(%d, %d) = %d\n", no2, no1, maxx(no2, no1))
+
+	//-------------------------------------------------------
+	odd := filter(data, isOdd)
+	even := filter(data, isEven)
+
+	fmt.Println("Data = ", data)
+	fmt.Println("Bilangan ganjil = ", odd)
+	fmt.Println("Bilangan genap = ", even)
+
+	//---------------------------------------------------------
+	numbers := make(map[string]int)
+	numbers["one"] = 1 // assign value by key
+	numbers["ten"] = 10
+	numbers["six"] = 6
+
+	fmt.Println(numbers["three"]) // get value
+
+	//--------------------------------------------------------
+	for i := 0; i < 5; i++ {
+		defer fmt.Printf("%d ", i)
+	}
 
 }
 
@@ -215,4 +245,30 @@ func variadicFunc(args ...int) {
 	for key, val := range args {
 		fmt.Printf("Parameter index ke %d = %d\n", key, val)
 	}
+}
+
+// return greater value between parameters
+func maxx(param1, param2 int) int {
+	if param1 > param2 {
+		return param1
+	}
+	return param2
+}
+
+func isOdd(integer int) bool {
+	return integer%2 != 0
+}
+
+func isEven(integer int) bool {
+	return integer%2 == 0
+}
+
+func filter(dt []int, fn testInt) []int {
+	var result []int
+	for _, value := range dt {
+		if fn(value) {
+			result = append(result, value)
+		}
+	}
+	return result
 }
